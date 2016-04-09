@@ -9,7 +9,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,7 +24,7 @@ import pl.edu.agh.dziekanat.persistance.BusinessSessionFactory;
 import pl.edu.agh.dziekanat.person.Person;
 import pl.edu.agh.dziekanat.person.PersonUtil;
 
-public class LoginController implements Initializable {
+public class LoginController implements Initializable  {
 
     @FXML
     private TextField login;
@@ -38,24 +37,23 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        password.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.ENTER) {
-                    loginAction(null);
-                }
+        password.setOnKeyPressed((KeyEvent keyEvent) -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                loginAction(null);
             }
         });
     }
 
     @FXML
     private void loginAction(ActionEvent e) {
+        lbStatus.setText("trwa logowanie ...");
+
         try {
             if (login()) {
                 MainApp.showMenu();
                 System.out.println("1");
 
-                URL paneOneUrl = getClass().getResource("../form/StartPane.fxml");
+                URL paneOneUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/StartPane.fxml");
                 System.out.println(paneOneUrl);
                 System.out.println("1");
 
@@ -75,6 +73,7 @@ public class LoginController implements Initializable {
     }
 
     private boolean login() {
+
         boolean loginStatus = false;
         BusinessSessionFactory bsf = BusinessSessionFactory.getInstance();
         Session session = bsf.getSession().openSession();

@@ -28,7 +28,7 @@ public class MenuController {
     @FXML
     void switchToOne(ActionEvent event) {
         try {
-            URL paneOneUrl = getClass().getResource("../form/EmptyPane.fxml");
+            URL paneOneUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/EmptyPane.fxml");
             AnchorPane paneOne = FXMLLoader.load(paneOneUrl);
             BorderPane border = MainApp.getRoot();
             border.setCenter(paneOne);
@@ -40,7 +40,7 @@ public class MenuController {
     @FXML
     void switchToTwo(ActionEvent event) {
         try {
-            URL paneTwoUrl = getClass().getResource("../form/EmptyPane.fxml");
+            URL paneTwoUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/EmptyPane.fxml");
             AnchorPane paneTwo = FXMLLoader.load(paneTwoUrl);
             BorderPane border = MainApp.getRoot();
             border.setCenter(paneTwo);
@@ -52,7 +52,7 @@ public class MenuController {
     @FXML
     void switchToMaintainPerson(ActionEvent event) {
         try {
-            URL panePersonUrl = getClass().getResource("../form/PersonPane.fxml");
+            URL panePersonUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/PersonPane.fxml");
             AnchorPane panePerson = FXMLLoader.load(panePersonUrl);
             BorderPane border = MainApp.getRoot();
             border.setCenter(panePerson);
