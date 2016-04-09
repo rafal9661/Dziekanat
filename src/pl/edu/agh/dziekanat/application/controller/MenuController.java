@@ -16,69 +16,54 @@ import pl.edu.agh.dziekanat.application.MainApp;
  */
 public class MenuController {
 
-	@FXML // fx:id="displayOne"
-	private MenuItem displayOne; // Value injected by FXMLLoader
+    @FXML // fx:id="displayOne"
+    private MenuItem displayOne; // Value injected by FXMLLoader
 
-	@FXML // fx:id="displayTwo"
-	private MenuItem displayTwo; // Value injected by FXMLLoader
+    @FXML // fx:id="displayTwo"
+    private MenuItem displayTwo; // Value injected by FXMLLoader
 
-	@FXML // fx:id="displayThree"
-	private MenuItem displayThree;
+    @FXML // fx:id="displayThree"
+    private MenuItem displayThree;
 
-	@FXML
-	void switchToOne(ActionEvent event) {
+    @FXML
+    void switchToOne(ActionEvent event) {
+        try {
+            URL paneOneUrl = getClass().getResource("../form/EmptyPane.fxml");
+            AnchorPane paneOne = FXMLLoader.load(paneOneUrl);
+            BorderPane border = MainApp.getRoot();
+            border.setCenter(paneOne);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-		try {
+    @FXML
+    void switchToTwo(ActionEvent event) {
+        try {
+            URL paneTwoUrl = getClass().getResource("../form/EmptyPane.fxml");
+            AnchorPane paneTwo = FXMLLoader.load(paneTwoUrl);
+            BorderPane border = MainApp.getRoot();
+            border.setCenter(paneTwo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-			URL paneOneUrl = getClass().getResource("../form/EmptyPane.fxml");
-			AnchorPane paneOne = FXMLLoader.load(paneOneUrl);
+    @FXML
+    void switchToMaintainPerson(ActionEvent event) {
+        try {
+            URL panePersonUrl = getClass().getResource("../form/PersonPane.fxml");
+            AnchorPane panePerson = FXMLLoader.load(panePersonUrl);
+            BorderPane border = MainApp.getRoot();
+            border.setCenter(panePerson);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-			BorderPane border = MainApp.getRoot();
-			border.setCenter(paneOne);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	@FXML
-	void switchToTwo(ActionEvent event) {
-
-		try {
-
-			URL paneTwoUrl = getClass().getResource("../form/EmptyPane.fxml");
-			AnchorPane paneTwo = FXMLLoader.load(paneTwoUrl);
-
-			BorderPane border = MainApp.getRoot();
-			border.setCenter(paneTwo);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	@FXML
-	void switchToMaintainPerson(ActionEvent event) {
-
-		try {
-
-			URL panePersonUrl = getClass().getResource("../form/PersonPane.fxml");
-			AnchorPane panePerson = FXMLLoader.load(panePersonUrl);
-
-			BorderPane border = MainApp.getRoot();
-			border.setCenter(panePerson);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	@FXML
-	void doHelloWorld(ActionEvent e) {
-		System.out.println("Hello World");
-	}
+    @FXML
+    void doHelloWorld(ActionEvent e) {
+        System.out.println("Hello World");
+    }
 
 }

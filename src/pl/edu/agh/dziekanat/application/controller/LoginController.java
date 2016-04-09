@@ -25,87 +25,77 @@ import pl.edu.agh.dziekanat.persistance.BusinessSessionFactory;
 import pl.edu.agh.dziekanat.person.Person;
 import pl.edu.agh.dziekanat.person.PersonUtil;
 
-public class LoginController implements Initializable{
-	
-	@FXML
-	private TextField login;
-	
-	@FXML
-	private PasswordField password;
-	
-	@FXML
-	private Label lbStatus;
-	
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		password.setOnKeyPressed(new EventHandler<KeyEvent>() 
-		{
-		    @Override
-		    public void handle(KeyEvent keyEvent) 
-		    {
-		        if(keyEvent.getCode() == KeyCode.ENTER)
-		        {
-		        	loginAction(null);
-		        }
-		    }
-		});		
-	}
-	
-	
-	@FXML
-	private void loginAction(ActionEvent e){
-    	
-		try {
-			
-			
-			if (login()) {
-			
-			MainApp.showMenu();
-	    	
-	        URL paneOneUrl = getClass().getResource("../form/StartPane.fxml");
-	        AnchorPane paneOne = FXMLLoader.load( paneOneUrl );
-	        BorderPane border = MainApp.getRoot();
-	        border.setCenter(paneOne);
-	        
-			}
-	        
-	        
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
+public class LoginController implements Initializable {
 
-	@FXML
-	private void cancelAction(ActionEvent e){
-		System.exit(0);
-		
-	}
-	
-	
-	private boolean login() {
-		boolean loginStatus = false;
-		BusinessSessionFactory bsf = BusinessSessionFactory.getInstance();
-		Session session = bsf.getSession().openSession();
+    @FXML
+    private TextField login;
 
-		Query query = session.createQuery("FROM Person where nickName =:nickName");
-		query.setString("nickName", login.getText());
-		List<Person> persons = query.list();
+    @FXML
+    private PasswordField password;
 
-		if (!persons.isEmpty()) {
-			Person person = persons.get(0);
-			if (person != null && person.getPassword().equals(PersonUtil.getHashedPassword(password.getText()))) {
-				loginStatus = true;
-			} else {
-				lbStatus.setText("Niepoprawne hasło!");
-			}
-		} else
-			lbStatus.setText("Niepoprawny login!");
+    @FXML
+    private Label lbStatus;
 
-		session.close();
-		bsf.close();
-		return loginStatus;
-		
-	}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        password.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    loginAction(null);
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void loginAction(ActionEvent e) {
+        try {
+            if (login()) {
+                MainApp.showMenu();
+                System.out.println("1");
+
+                URL paneOneUrl = getClass().getResource("../form/StartPane.fxml");
+                System.out.println(paneOneUrl);
+                System.out.println("1");
+
+                AnchorPane paneOne = FXMLLoader.load(paneOneUrl);
+                BorderPane border = MainApp.getRoot();
+                border.setCenter(paneOne);
+            }
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void cancelAction(ActionEvent e) {
+        System.exit(0);
+
+    }
+
+    private boolean login() {
+        boolean loginStatus = false;
+        BusinessSessionFactory bsf = BusinessSessionFactory.getInstance();
+        Session session = bsf.getSession().openSession();
+        Query query = session.createQuery("FROM Person where nickName =:nickName");
+        query.setString("nickName", login.getText());
+        List<Person> persons = query.list();
+
+        if (!persons.isEmpty()) {
+            Person person = persons.get(0);
+            if (person != null && person.getPassword().equals(PersonUtil.getHashedPassword(password.getText()))) {
+                loginStatus = true;
+            } else {
+                lbStatus.setText("Niepoprawne hasło!");
+            }
+        } else {
+            lbStatus.setText("Niepoprawny login!");
+        }
+        session.close();
+        bsf.close();
+        return loginStatus;
+
+    }
 
 }

@@ -12,6 +12,14 @@
             <MenuItem mnemonicParsing="false" text="Kierunki" />
             <MenuItem mnemonicParsing="false" text="Semestry" />
             <MenuItem mnemonicParsing="false" text="Przedmioty" />
+            <MenuItem fx:id="mailTo" mnemonicParsing="false" onAction="#switchToMailTo" text="Email do ..." />
+      </items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Prowadzący">
+      <items>
+        <MenuItem fx:id="displayTwo" mnemonicParsing="false" onAction="#switchToTwo" text="Obecności" />
+            <MenuItem mnemonicParsing="false" text="Wiadomości" />
+            <MenuItem fx:id="mailTo" mnemonicParsing="false" onAction="#switchToMailTo" text="Email do ..." />
       </items>
     </Menu>
       <Menu mnemonicParsing="false" text="Studenci">
@@ -19,11 +27,5 @@
           <MenuItem mnemonicParsing="false" text="Oceny" />
         </items>
       </Menu>
-    <Menu mnemonicParsing="false" text="Prowadzący">
-      <items>
-        <MenuItem fx:id="displayTwo" mnemonicParsing="false" onAction="#switchToTwo" text="Obecności" />
-            <MenuItem mnemonicParsing="false" text="Wiadomości" />
-      </items>
-    </Menu>
   </menus>
 </MenuBar>
