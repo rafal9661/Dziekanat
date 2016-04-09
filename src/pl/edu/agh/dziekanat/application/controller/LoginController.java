@@ -24,7 +24,7 @@ import pl.edu.agh.dziekanat.persistance.BusinessSessionFactory;
 import pl.edu.agh.dziekanat.person.Person;
 import pl.edu.agh.dziekanat.person.PersonUtil;
 
-public class LoginController implements Initializable  {
+public class LoginController implements Initializable {
 
     @FXML
     private TextField login;
