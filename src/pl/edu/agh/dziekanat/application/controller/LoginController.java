@@ -24,6 +24,9 @@ import pl.edu.agh.dziekanat.persistance.BusinessSessionFactory;
 import pl.edu.agh.dziekanat.person.Person;
 import pl.edu.agh.dziekanat.person.PersonUtil;
 
+import java.io.IOException;
+import java.net.URL;
+
 public class LoginController implements Initializable {
 
     @FXML
@@ -37,11 +40,19 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        password.setOnKeyPressed((KeyEvent keyEvent) -> {
-            if (keyEvent.getCode() == KeyCode.ENTER) {
-                loginAction(null);
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                password.setOnKeyPressed((KeyEvent keyEvent) -> {
+                    if (keyEvent.getCode() == KeyCode.ENTER) {
+
+                        loginAction(null);
+                    }
+                });
             }
         });
+
+        t.start();
+
     }
 
     @FXML
@@ -54,8 +65,6 @@ public class LoginController implements Initializable {
                 System.out.println("1");
 
                 URL paneOneUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/StartPane.fxml");
-                System.out.println(paneOneUrl);
-                System.out.println("1");
 
                 AnchorPane paneOne = FXMLLoader.load(paneOneUrl);
                 BorderPane border = MainApp.getRoot();
