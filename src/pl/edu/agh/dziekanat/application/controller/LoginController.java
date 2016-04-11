@@ -40,18 +40,12 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                password.setOnKeyPressed((KeyEvent keyEvent) -> {
-                    if (keyEvent.getCode() == KeyCode.ENTER) {
+        password.setOnKeyPressed((KeyEvent keyEvent) -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
 
-                        loginAction(null);
-                    }
-                });
+                loginAction(null);
             }
         });
-
-        t.start();
 
     }
 

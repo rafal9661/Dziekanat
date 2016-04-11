@@ -10,6 +10,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import pl.edu.agh.dziekanat.email.EmailSender;
+import pl.edu.agh.dziekanat.person.PersonUtil;
 
 public class MainApp extends Application {
 
@@ -28,7 +30,6 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
         // loading FXML resources
         // note that we don't need PaneTwo in this class
         URL menuBarUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/MenuPane.fxml");

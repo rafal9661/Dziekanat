@@ -62,6 +62,18 @@ public class MenuController {
     }
 
     @FXML
+    void switchToEmail(ActionEvent event) {
+        try {
+            URL panePersonUrl = getClass().getResource("/pl/edu/agh/dziekanat/application/form/MailTo.fxml");
+            AnchorPane pane = FXMLLoader.load(panePersonUrl);
+            BorderPane border = MainApp.getRoot();
+            border.setCenter(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void doHelloWorld(ActionEvent e) {
         System.out.println("Hello World");
     }

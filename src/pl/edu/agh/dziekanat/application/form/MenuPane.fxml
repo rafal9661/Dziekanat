@@ -19,7 +19,7 @@
       <items>
         <MenuItem fx:id="displayTwo" mnemonicParsing="false" onAction="#switchToTwo" text="Obecności" />
             <MenuItem mnemonicParsing="false" text="Wiadomości" />
-            <MenuItem mnemonicParsing="false" text="Email do ..." />
+            <MenuItem fx:id="email1" mnemonicParsing="false" onAction="#switchToEmail" text="Email do ..." />
       </items>
     </Menu>
       <Menu mnemonicParsing="false" text="Studenci">
